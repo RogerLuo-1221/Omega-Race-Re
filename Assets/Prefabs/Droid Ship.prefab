@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8362051758151418138}
   - component: {fileID: 2288685378281540627}
+  - component: {fileID: 576473617418699077}
   - component: {fileID: 1509849250571685745}
   - component: {fileID: 6028714739645786351}
-  - component: {fileID: 576473617418699077}
   m_Layer: 0
   m_Name: Droid Ship
   m_TagString: Enemy
@@ -87,6 +87,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &576473617418699077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181912191790224703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e05cc5555bc6cb4ca186d46fd8d9927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &1509849250571685745
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -171,15 +183,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &576473617418699077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6181912191790224703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e05cc5555bc6cb4ca186d46fd8d9927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

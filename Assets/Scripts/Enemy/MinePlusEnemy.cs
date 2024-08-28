@@ -9,4 +9,12 @@ public class MinePlusEnemy : Enemy
     {
         points = 500;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }

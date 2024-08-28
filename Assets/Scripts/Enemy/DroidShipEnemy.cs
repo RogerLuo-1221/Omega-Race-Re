@@ -11,9 +11,6 @@ public class DroidShipEnemy : Enemy
 
     protected override void Move()
     {
-        if (Input.GetKey(KeyCode.K))
-        {
-            rb.AddForce(transform.right * (200f * Time.deltaTime));
-        }
+        
     }
 }

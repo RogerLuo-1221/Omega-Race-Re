@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7748177318375568953}
   - component: {fileID: 4242212702183091942}
-  - component: {fileID: 2657344750174179363}
   - component: {fileID: 5087705558979674496}
+  - component: {fileID: 2657344750174179363}
   - component: {fileID: 4185410627677991324}
   m_Layer: 0
   m_Name: Mine
@@ -87,6 +87,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5087705558979674496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375291907191262007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6604f55a9a21f4fb1375f0ba9555c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minePlus: {fileID: 3278197655750410850, guid: fe97d5a57deeb124e86d93ffa24e2cdb, type: 3}
 --- !u!60 &2657344750174179363
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -138,19 +151,6 @@ PolygonCollider2D:
       - {x: 0.065, y: 0}
       - {x: 0.024999999, y: 0.04}
   m_UseDelaunayMesh: 0
---- !u!114 &5087705558979674496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375291907191262007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6604f55a9a21f4fb1375f0ba9555c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minePlus: {fileID: 3278197655750410850, guid: fe97d5a57deeb124e86d93ffa24e2cdb, type: 3}
 --- !u!50 &4185410627677991324
 Rigidbody2D:
   serializedVersion: 4
