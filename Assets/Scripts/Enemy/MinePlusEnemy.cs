@@ -16,5 +16,11 @@ public class MinePlusEnemy : Enemy
         {
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(collision.gameObject);
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            playerController.DestroyEnemy(gameObject);
+        }
     }
 }

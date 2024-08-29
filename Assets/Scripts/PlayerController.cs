@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float projectileSpeed;
     public GameObject projectilePrefab;
+
+    public SpriteRenderer spriteRenderer;
+    public Sprite ship;
+    public Sprite acceleration;
+
+    public GameObject explodePrefab;
     
     private ScoreManager _scoreManager;
 
@@ -22,7 +28,9 @@ public class PlayerController : MonoBehaviour
         thrustSpeed = 200f;
         rb = GetComponent<Rigidbody2D>();
         projectileSpeed = 5f;
-
+        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        
         _scoreManager = FindObjectOfType<ScoreManager>();
     }
 
@@ -43,6 +51,15 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * (thrustSpeed * Time.deltaTime));
         }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            spriteRenderer.sprite = acceleration;
+        }
+        else if (Input.GetKeyUp(KeyCode.K))
+        {
+            spriteRenderer.sprite = ship;
+        }
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             FireProjectile();
@@ -54,6 +71,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            DestroyEnemy(collision.gameObject);
+            
             lifeCount--;
             Destroy(gameObject);
         }
@@ -71,6 +90,8 @@ public class PlayerController : MonoBehaviour
         var points = enemy.GetComponent<Enemy>().points;
 
         _scoreManager.AddPoints(points);
+
+        Instantiate(explodePrefab, enemy.transform.position, Quaternion.identity);
         
         Destroy(enemy);
     }
