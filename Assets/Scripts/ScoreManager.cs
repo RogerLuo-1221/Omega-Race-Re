@@ -20,6 +20,6 @@ public class ScoreManager : MonoBehaviour
     
     private void UpdateScoreText()
     {
-        scoreText.text = "Score: " + _playerScore;
+        scoreText.text = _playerScore.ToString();
     }
 }

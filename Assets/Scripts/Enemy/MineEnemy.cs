@@ -7,6 +7,7 @@ using UnityEngine;
 public class MineEnemy : Enemy
 {
     public GameObject minePlus;
+    public GameObject explode;
     
     private void Awake()
     {
@@ -20,10 +21,17 @@ public class MineEnemy : Enemy
         {
             var newMinePlus = Instantiate(minePlus, transform.position, transform.rotation);
             newMinePlus.transform.position += new Vector3(0, -0.105f, 0);
+            
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            if (collision.gameObject.GetComponent<PlayerController>().isInvincible)
+            {
+                Instantiate(explode, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            else collision.gameObject.GetComponent<PlayerController>().Damaged();
         }
         else if (collision.gameObject.CompareTag("Projectile"))
         {

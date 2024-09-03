@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MinePlusEnemy : Enemy
 {
+    public GameObject explode;
+    
     private void Awake()
     {
         points = 500;
@@ -14,7 +16,12 @@ public class MinePlusEnemy : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            if (collision.gameObject.GetComponent<PlayerController>().isInvincible)
+            {
+                Instantiate(explode, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            else collision.gameObject.GetComponent<PlayerController>().Damaged();
         }
         else if (collision.gameObject.CompareTag("Projectile"))
         {

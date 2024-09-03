@@ -13,6 +13,6 @@ public class Projectile : MonoBehaviour
             playerController.DestroyEnemy(collision.gameObject);
         }
         
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5087705558979674496}
   - component: {fileID: 2657344750174179363}
   - component: {fileID: 4185410627677991324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minePlus: {fileID: 3278197655750410850, guid: fe97d5a57deeb124e86d93ffa24e2cdb, type: 3}
+  explode: {fileID: 5397917200037785899, guid: 9d998264c798ea04c9795e6dee7f1096, type: 3}
 --- !u!60 &2657344750174179363
 PolygonCollider2D:
   m_ObjectHideFlags: 0

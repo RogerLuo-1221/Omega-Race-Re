@@ -8,12 +8,11 @@ using Vector2 = UnityEngine.Vector2;
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
-
-    public Transform playerTransform;
-    public float safeDistance = 1.5f;
+    
+    public float safeDistance = 2f;
     
     public float spawnInterval = 3f;
-
+    
     private float _timer;
     
     private void Update()
@@ -30,6 +29,7 @@ public class EnemySpawnManager : MonoBehaviour
     private void EnemySpawn()
     {
         Vector2 spawnPos;
+        var playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         
         do
         {

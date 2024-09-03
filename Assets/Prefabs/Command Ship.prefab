@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6143519604998656314}
   - component: {fileID: 6747196672783649155}
   - component: {fileID: 7684698732740975271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Command Ship
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,6 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f4f8c949e397940b2ea40fae0b28fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0}
+  directionChangeInterval: 0
+  fireInterval: 0
+  dropInterval: 0
+  projectilePrefab: {fileID: 2987793760066853143, guid: 07dad6ed68df701449817d99e61550d2, type: 3}
+  minePrefab: {fileID: 6375291907191262007, guid: 6c09b0154732f934f95a974137aebcff, type: 3}
 --- !u!60 &6143519604998656314
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -109,7 +116,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 7003114663300528718}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a89e975505b2ef946a2efa34d3bdccfa, type: 2}
+  m_Material: {fileID: 6200000, guid: 9a174ba6360cb7e42bc54a82475b1116, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
