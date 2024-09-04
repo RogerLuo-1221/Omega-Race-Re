@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,12 +12,18 @@ public class PlayerController : MonoBehaviour
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public Transform spawnPos;
+    public float fireRate;
+
+    private float _fireTimer;
 
     public SpriteRenderer spriteRenderer;
     public Sprite ship;
     public Sprite acceleration;
     
     public bool isInvincible;
+    public Slider invincibleSlider;
+    public RectTransform invincibleSliderRect;
+    public bool fireLevelUp;
 
     public GameObject explodePrefab;
 
@@ -25,18 +32,18 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Application.persistentDataPath);
-        rotationSpeed = 150f;
+        rotationSpeed = 200f;
         thrustSpeed = 200f;
         rb = GetComponent<Rigidbody2D>();
-        projectileSpeed = 5f;
+        projectileSpeed = 8f;
+        fireRate = 0.4f;
         
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         _scoreManager = FindObjectOfType<ScoreManager>();
         gameManager = FindObjectOfType<GameManager>();
 
-        BeInvincible();
+        BeInvincible(6);
     }
 
     private void Update()
@@ -64,11 +71,16 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.sprite = ship;
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
+        
+        _fireTimer += Time.deltaTime;
+        
+        if (Input.GetKeyDown(KeyCode.J) && _fireTimer >= fireRate)
         {
             FireProjectile();
+            _fireTimer = 0;
         }
+
+        InvincibleSliderFollow();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -86,25 +98,26 @@ public class PlayerController : MonoBehaviour
     public void Damaged()
     {
         gameManager.LoseLife();
-        
-        Respawn();
     }
 
-    private void Respawn()
+    public void Respawn()
     {
         Instantiate(explodePrefab, transform.position, Quaternion.identity);
-        Instantiate(gameObject, spawnPos.position, new Quaternion(0, 0, 90, 0));
         
-        StartCoroutine(Invincible());
+        transform.SetPositionAndRotation(spawnPos.position, spawnPos.rotation);
+        rb.velocity = Vector2.zero;
         
-        Destroy(gameObject);
+        BeInvincible(6);
     }
 
     void FireProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-        projectileRb.velocity = transform.up * projectileSpeed;
+        if (fireLevelUp)
+        {
+            Fire(15);
+            Fire(-15);
+        }
+        Fire(0);
     }
     
     public void DestroyEnemy(GameObject enemy)
@@ -121,22 +134,29 @@ public class PlayerController : MonoBehaviour
         Destroy(enemy);
     }
 
-    public void BeInvincible()
+    public void BeInvincible(float duration)
     {
-        Debug.Log("called");
-        StartCoroutine(Invincible());
+        StartCoroutine(Invincible(duration));
     }
     
-    private IEnumerator Invincible()
+    private IEnumerator Invincible(float duration)
     {
         isInvincible = true;
+
+        invincibleSlider.maxValue = duration;
+        invincibleSlider.value = duration;
+        invincibleSlider.gameObject.SetActive(true);
+        
         Physics2D.IgnoreLayerCollision(6, 8, true);
         
         var isTranslucent = false;
 
-        for (int i = 0; i < 30; i++)
+        var times = (int)(duration / 0.3);
+        for (var i = 0; i < times; i++)
         {
             yield return new WaitForSeconds(0.3f);
+            
+            invincibleSlider.value -= 0.3f;
             
             if (isTranslucent)
             {
@@ -151,6 +171,37 @@ public class PlayerController : MonoBehaviour
         }
         
         isInvincible = false;
+        invincibleSlider.gameObject.SetActive(false);
         Physics2D.IgnoreLayerCollision(6, 8, false);
+    }
+
+    private void InvincibleSliderFollow()
+    {
+        invincibleSliderRect.position = transform.position + new Vector3(0, 0.6f, 0);
+    }
+
+    private void Fire(float angle)
+    {
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+        Vector2 direction = rotation * transform.up;
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+    }
+
+    public void FireLevelUp(float second)
+    {
+        StartCoroutine(TriFire(second));
+    }
+
+    private IEnumerator TriFire(float time)
+    {
+        fireLevelUp = true;
+        fireRate = 0.2f;
+        
+        yield return new WaitForSeconds(time);
+        
+        fireLevelUp = false;
+        fireRate = 0.4f;
     }
 }

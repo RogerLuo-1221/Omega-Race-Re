@@ -8,6 +8,7 @@ TagManager:
   - Arena
   - Projectile
   - GameManager
+  - Line
   layers:
   - Default
   - TransparentFX

@@ -16,15 +16,16 @@ public class MineEnemy : Enemy
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Enemy>() != null &&
+        /*if (collision.gameObject.GetComponent<Enemy>() != null &&
             collision.gameObject.GetComponent<Enemy>().GetType() == typeof(CommandShipEnemy))
         {
             var newMinePlus = Instantiate(minePlus, transform.position, transform.rotation);
             newMinePlus.transform.position += new Vector3(0, -0.105f, 0);
             
             Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Player"))
+        }*/
+        
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (collision.gameObject.GetComponent<PlayerController>().isInvincible)
             {

@@ -9,17 +9,15 @@ public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     
-    public float safeDistance = 2f;
-    
-    public float spawnInterval = 3f;
-    
+    private float _safeDistance = 2f;
+    private float _spawnInterval = 4f;
     private float _timer;
     
     private void Update()
     {
         _timer += Time.deltaTime;
         
-        if (_timer >= spawnInterval)
+        if (_timer >= _spawnInterval)
         {
             EnemySpawn();
             _timer = 0;
@@ -36,7 +34,7 @@ public class EnemySpawnManager : MonoBehaviour
             var x = Random.Range(3.1f, 7.8f) * (Random.Range(0, 2) * 2 - 1);
             var y = Random.Range(1.6f, 3.9f) * (Random.Range(0, 2) * 2 - 1);
             spawnPos = new Vector2(x, y);
-        } while (Vector2.Distance(spawnPos, playerTransform.position) < safeDistance);
+        } while (Vector2.Distance(spawnPos, playerTransform.position) < _safeDistance);
         
         var enemyIndex = Random.Range(0, enemyPrefabs.Length);
         

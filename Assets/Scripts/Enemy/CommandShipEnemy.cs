@@ -11,6 +11,7 @@ public class CommandShipEnemy : Enemy
     public float dropInterval;
     public GameObject projectilePrefab;
     public GameObject minePrefab;
+    public GameObject minePlusPrefab;
     
     private void Awake()
     {
@@ -58,7 +59,16 @@ public class CommandShipEnemy : Enemy
     {
         while (true)
         {
-            Instantiate(minePrefab, transform.position, Quaternion.identity);
+            var selector = Random.Range(0, 2);
+            switch (selector)
+            {
+                case 0:
+                    Instantiate(minePrefab, transform.position, Quaternion.identity);
+                    break;
+                case 1:
+                    Instantiate(minePlusPrefab, transform.position, Quaternion.identity);
+                    break;
+            }
 
             yield return new WaitForSeconds(dropInterval);
         }

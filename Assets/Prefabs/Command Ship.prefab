@@ -107,6 +107,7 @@ MonoBehaviour:
   dropInterval: 0
   projectilePrefab: {fileID: 2987793760066853143, guid: 07dad6ed68df701449817d99e61550d2, type: 3}
   minePrefab: {fileID: 6375291907191262007, guid: 6c09b0154732f934f95a974137aebcff, type: 3}
+  minePlusPrefab: {fileID: 3278197655750410850, guid: fe97d5a57deeb124e86d93ffa24e2cdb, type: 3}
 --- !u!60 &6143519604998656314
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverBanner;
+    public GameObject player;
     
     public int playerLives;
     public TMP_Text playerLivesText;
     
     void Start()
     {
+        player  = GameObject.FindGameObjectWithTag("Player");
+        
         Time.timeScale = 1f;
         gameOverBanner.SetActive(false);
 
@@ -26,10 +29,18 @@ public class GameManager : MonoBehaviour
         playerLives--;
         UpdatePlayerLivesText();
 
-        if (playerLives > 0) return;
-        
-        Destroy(GameObject.FindWithTag("Player").gameObject);
-        GameOver();
+        if (playerLives > 0) player.GetComponent<PlayerController>().Respawn();
+        else
+        {
+            Destroy(player);
+            GameOver();
+        }
+    }
+
+    public void ExtraLife()
+    {
+        playerLives++;
+        UpdatePlayerLivesText();
     }
 
     private void UpdatePlayerLivesText()
