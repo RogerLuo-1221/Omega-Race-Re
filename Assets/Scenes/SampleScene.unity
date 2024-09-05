@@ -587,6 +587,7 @@ MonoBehaviour:
   - {fileID: 6181912191790224703, guid: 46e7d8d00646dd645b8530a57ec00e80, type: 3}
   - {fileID: 7003114663300528718, guid: 59a7920d355874244803f3a9cf99c433, type: 3}
   - {fileID: 2725569299233878633, guid: 8d605d7872221094db3071dca6105550, type: 3}
+  enemyCount: 0
 --- !u!4 &221658393
 Transform:
   m_ObjectHideFlags: 0
@@ -1120,6 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverBanner: {fileID: 107474759}
   player: {fileID: 0}
+  scoreManager: {fileID: 1355104574}
   playerLives: 3
   playerLivesText: {fileID: 89924478}
 --- !u!4 &418969604
@@ -3148,6 +3150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7540252a5603d144ada8356f4213053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highestScoreText: {fileID: 343847236}
   scoreText: {fileID: 682366650}
 --- !u!4 &1355104575
 Transform:
@@ -3304,6 +3307,7 @@ MonoBehaviour:
   lapTimer: 0
   lapTimerText: {fileID: 1861541254}
   scoreManager: {fileID: 1355104574}
+  enemySpawnManager: {fileID: 221658392}
 --- !u!1 &1378792727
 GameObject:
   m_ObjectHideFlags: 0

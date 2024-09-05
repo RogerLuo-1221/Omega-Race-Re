@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - GameManager
   - Line
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

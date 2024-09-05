@@ -58,23 +58,23 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.up * (thrustSpeed * Time.deltaTime));
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             spriteRenderer.sprite = acceleration;
         }
-        else if (Input.GetKeyUp(KeyCode.K))
+        else if (Input.GetKeyUp(KeyCode.W))
         {
             spriteRenderer.sprite = ship;
         }
         
         _fireTimer += Time.deltaTime;
         
-        if (Input.GetKeyDown(KeyCode.J) && _fireTimer >= fireRate)
+        if (Input.GetKey(KeyCode.J) && _fireTimer >= fireRate)
         {
             FireProjectile();
             _fireTimer = 0;
@@ -187,6 +187,11 @@ public class PlayerController : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
         projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+    }
+
+    public void FireRateUpgrade()
+    {
+        if (fireRate > 0.1) fireRate -= 0.1f;
     }
 
     public void FireLevelUp(float second)

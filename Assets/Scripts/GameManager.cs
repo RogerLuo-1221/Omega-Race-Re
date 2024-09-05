@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gameOverBanner;
     public GameObject player;
+    public ScoreManager scoreManager;
     
     public int playerLives;
     public TMP_Text playerLivesText;
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        scoreManager.GetComponent<ScoreManager>().UpdateHighestScore();
+        
         Time.timeScale = 0f;
         gameOverBanner.SetActive(true);
     }

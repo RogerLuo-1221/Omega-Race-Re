@@ -9,18 +9,37 @@ public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     
-    private float _safeDistance = 2f;
+    private float _safeDistance = 2.5f;
     private float _spawnInterval = 4f;
     private float _timer;
+
+    private float _difficultyTimer;
+
+    public int enemyCount;
     
     private void Update()
     {
         _timer += Time.deltaTime;
+        _difficultyTimer += Time.deltaTime;
         
         if (_timer >= _spawnInterval)
         {
             EnemySpawn();
             _timer = 0;
+        }
+
+        /*if (_difficultyTimer >= 20f) 
+        {
+            DifficultyUpdate();
+            _difficultyTimer = 0;
+        }*/
+    }
+
+    public void DifficultyUpdate()
+    {
+        if (_spawnInterval > 2)
+        {
+            _spawnInterval -= 1;
         }
     }
     
@@ -36,8 +55,19 @@ public class EnemySpawnManager : MonoBehaviour
             spawnPos = new Vector2(x, y);
         } while (Vector2.Distance(spawnPos, playerTransform.position) < _safeDistance);
         
-        var enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
+        var enemyIndex = Random.Range(0, 10);
+
+        if (enemyIndex == 0)
+        {
+            Instantiate(enemyPrefabs[2], spawnPos, Quaternion.identity);
+        }
+        else if (enemyIndex is >= 1 and <= 7)
+        {
+            Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity);
+        }
+        else if (enemyIndex is >= 8 and <= 9)
+        {
+            Instantiate(enemyPrefabs[1], spawnPos, Quaternion.identity);
+        }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DroidShipEnemy : Enemy
@@ -7,6 +6,9 @@ public class DroidShipEnemy : Enemy
     public float speed;
     public Vector2 direction;
     public float directionChangeInterval;
+    public GameObject commandShipPrefab;
+
+    private float _evolutionTimer;
 
     private void Awake()
     {
@@ -15,6 +17,20 @@ public class DroidShipEnemy : Enemy
         directionChangeInterval = 10f;
 
         StartCoroutine(ChangeDirection());
+    }
+
+    private void Update()
+    {
+        _evolutionTimer += Time.deltaTime;
+
+        if (_evolutionTimer >= 8) Evolution();
+    }
+
+    private void Evolution()
+    {
+        Instantiate(commandShipPrefab, transform.position, transform.rotation);
+        
+        Destroy(gameObject);
     }
 
     private IEnumerator ChangeDirection()

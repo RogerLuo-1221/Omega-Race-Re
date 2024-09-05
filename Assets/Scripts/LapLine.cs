@@ -17,6 +17,7 @@ public class LapLine : MonoBehaviour
     public TMP_Text lapTimerText;
     
     public ScoreManager scoreManager;
+    public EnemySpawnManager enemySpawnManager;
 
     private void Start()
     {
@@ -48,9 +49,9 @@ public class LapLine : MonoBehaviour
 
     private void LapUpdate()
     {
-        if (lapTimer > 0) scoreManager.AddPoints(4000);
+        if (lapTimer > 0) scoreManager.AddPoints(10000);
         
-        lapNumber = Random.Range(2, 7);
+        lapNumber = 3;
         lapTimer = 25;
         
         EventHappen();
@@ -59,7 +60,11 @@ public class LapLine : MonoBehaviour
     private void EventHappen()
     {
         var player = GameObject.FindGameObjectWithTag("Player").gameObject;
-
+        
+        player.GetComponent<PlayerController>().FireRateUpgrade();
+        
+        enemySpawnManager.DifficultyUpdate();
+        
         var eventSelector = Random.Range(1, 4);
         Debug.Log(eventSelector);
 
@@ -71,7 +76,7 @@ public class LapLine : MonoBehaviour
                 break; 
             case 2:
                 // Firearm level up
-                player.GetComponent<PlayerController>().FireLevelUp(15);
+                player.GetComponent<PlayerController>().FireLevelUp(18);
                 break;
             case 3:
                 // Extra life
