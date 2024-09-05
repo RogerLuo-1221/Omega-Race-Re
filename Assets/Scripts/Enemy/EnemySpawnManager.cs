@@ -9,8 +9,8 @@ public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     
-    private float _safeDistance = 2.5f;
-    private float _spawnInterval = 4f;
+    private float _safeDistance = 2f;
+    private float _spawnInterval = 8f;
     private float _timer;
 
     private float _difficultyTimer;
@@ -37,7 +37,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void DifficultyUpdate()
     {
-        if (_spawnInterval > 2)
+        if (_spawnInterval > 3)
         {
             _spawnInterval -= 1;
         }

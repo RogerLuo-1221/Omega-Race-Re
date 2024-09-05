@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player  = GameObject.FindGameObjectWithTag("Player");
-        
         Time.timeScale = 1f;
         gameOverBanner.SetActive(false);
 
@@ -24,6 +23,10 @@ public class GameManager : MonoBehaviour
         UpdatePlayerLivesText();
     }
 
+    public void GameStart()
+    {
+        Debug.Log("Game Start");
+    }
     
     public void LoseLife()
     {

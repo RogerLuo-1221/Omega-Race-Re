@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
 
     public void Damaged()
     {
+        AudioManager.instance.PlaySfx(AudioManager.instance.playerDie);
+        
         gameManager.LoseLife();
     }
 
@@ -118,6 +120,8 @@ public class PlayerController : MonoBehaviour
             Fire(-15);
         }
         Fire(0);
+        
+        AudioManager.instance.PlaySfx(AudioManager.instance.playerFire);
     }
     
     public void DestroyEnemy(GameObject enemy)
@@ -131,6 +135,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(explodePrefab, enemy.transform.position, Quaternion.identity);
         }
         
+        AudioManager.instance.PlaySfx(AudioManager.instance.enemyDie);
         Destroy(enemy);
     }
 

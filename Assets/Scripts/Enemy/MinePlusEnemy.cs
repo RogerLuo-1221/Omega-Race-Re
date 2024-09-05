@@ -19,12 +19,14 @@ public class MinePlusEnemy : Enemy
             if (collision.gameObject.GetComponent<PlayerController>().isInvincible)
             {
                 Instantiate(explode, transform.position, Quaternion.identity);
+                AudioManager.instance.PlaySfx(AudioManager.instance.enemyDie);
                 Destroy(gameObject);
             }
             else collision.gameObject.GetComponent<PlayerController>().Damaged();
         }
         else if (collision.gameObject.CompareTag("Projectile"))
         {
+            AudioManager.instance.PlaySfx(AudioManager.instance.enemyDie);
             Destroy(collision.gameObject);
             PlayerController playerController = FindObjectOfType<PlayerController>();
             playerController.DestroyEnemy(gameObject);

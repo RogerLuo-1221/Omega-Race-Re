@@ -44,6 +44,8 @@ public class LapLine : MonoBehaviour
             if (lapNumber == 0) LapUpdate();
             
             LapNumberTextUpdate();
+            
+            AudioManager.instance.PlaySfx(AudioManager.instance.lapComplete);
         }
     }
 
